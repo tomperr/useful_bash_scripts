@@ -23,7 +23,8 @@ apt install -y mysql-server
 
 # adding php7 repository
 add-apt-repository -y ppa:ondrej/php 
-apt-get -y update 
+apt-get -y update
+
 # installing php7
 apt-get -y install php7.3 php7.3-fpm 
 
