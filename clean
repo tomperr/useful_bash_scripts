@@ -1,0 +1,71 @@
+#!/bin/bash
+
+verbose=0
+
+if [ $# = 1 ]; then
+	if [ $1 = "-v" ]; then
+		verbose=1
+	else
+		echo "Error: Unknown parameter"
+		echo "Usage: $0 [-v]"
+		exit 1
+	fi
+elif [ $# -gt 1 ]; then
+	echo "Error: Too many parameters"
+	echo "Usage: $0 [-v]"
+	exit 1
+fi
+
+dirs=("/tmp")
+
+# EMPTY DIRECTORIES
+
+for dir in ${dirs[*]}; do
+	if [ $verbose -eq 1 ]; then
+		echo -ne "Deletting $dir... "
+	fi
+
+	sudo rm -rf $dir/*
+
+	if [ $verbose -eq 1 ]; then
+		echo -ne "DONE\n"
+	fi
+done
+
+# EMPTY APT CACHE
+
+if [ $verbose -eq 1 ]; then
+	echo -ne "Cleaning /var/cache/apt... "
+fi
+
+sudo apt-get clean
+
+if [ $verbose -eq 1 ]; then
+	echo -ne "DONE\n"
+fi
+
+# REMOVE USELESS PACKAGES
+
+if [ $verbose -eq 1 ]; then
+	echo -ne "Removing useless packages... "
+fi
+
+sudo apt-get -qq autoremove
+
+if [ $verbose -eq 1 ]; then
+	echo -ne "DONE\n"
+fi
+
+# EMPTY THUMBNAILS CACHE
+
+if [ $verbose -eq 1 ]; then
+	echo -ne "Cleaning thumbnails cache... "
+fi
+
+rm -rf ~/.cache/thumbnails/*
+
+if [ $verbose -eq 1 ]; then
+	echo -ne "DONE\n"
+fi
+
+

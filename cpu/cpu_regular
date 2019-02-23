@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo cpufreq-set -c 0 -g powersave -d 800000 -u 2000000
+sudo cpufreq-set -c 1 -g powersave -d 800000 -u 2000000
+sudo cpufreq-set -c 2 -g powersave -d 800000 -u 2000000
+sudo cpufreq-set -c 3 -g powersave -d 800000 -u 2000000
+
