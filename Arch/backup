@@ -1,0 +1,11 @@
+#!/bin/bash
+
+dt=$(date +%d-%m-%Y-%R)
+base="/usr/share/backup"
+
+mkdir -p "$base"
+
+dest="$base/$dt"
+
+zip -r "$dest.zip" "$HOME/Documents" "$HOME/Downloads" "$HOME/Pictures"
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+var=$( cat /sys/class/backlight/acpi_video0/brightness )
+var=$((var - 5))
+
+if [ $var -le 0 ]; then
+	var=1
+fi
+
+echo $var > /sys/class/backlight/acpi_video0/brightness
+
