@@ -1,0 +1,6 @@
+#!/bin/bash
+
+dirs="/tmp $HOME/.local/share/Trash/files"
+for i in $dirs; do
+	rm -rf $i/* 2> /dev/null
+done
