@@ -4,13 +4,11 @@
 dt=$(date +%d-%m-%Y-%R)
 
 # backup directory
+# WARNING : make sure directory exists, and user has read/write permission 
 base="/usr/share/backup"
 
 # current backup path
 dest="$base/$dt"
-
-# create backup directory if not exists
-mkdir -p "$base"
 
 # backup folders
 zip -r "$dest.zip" "$HOME/Documents" "$HOME/Downloads" "$HOME/Pictures"
