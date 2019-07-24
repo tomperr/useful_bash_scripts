@@ -1,11 +1,30 @@
 #!/bin/bash
 
+# namefile of backup
 dt=$(date +%d-%m-%Y-%R)
+
+# backup directory
 base="/usr/share/backup"
 
-mkdir -p "$base"
-
+# current backup path
 dest="$base/$dt"
 
+# create backup directory if not exists
+mkdir -p "$base"
+
+# backup folders
 zip -r "$dest.zip" "$HOME/Documents" "$HOME/Downloads" "$HOME/Pictures"
 
+# counters
+count=0
+limit=3
+
+# loop keeping only the `limit` last backups
+for i in $(ls -t "$base"); do
+	#echo "item: $i"
+	count=$((count+1))
+	if [ $count -gt $limit ]; then
+		# delete old backup
+		rm "$base/$i"
+	fi
+done
