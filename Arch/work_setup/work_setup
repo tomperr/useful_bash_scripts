@@ -1,0 +1,5 @@
+#!/bin/bash
+
+terminator -l work1 &
+terminator -l work2 &
+terminator -l work3 &
